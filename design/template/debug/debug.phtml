@@ -9,11 +9,13 @@ var DEBUG_TOOLBAR_MEDIA_URL = "<?php echo $this->getDebugMediaUrl(); ?>";
 // ]]>
 </script>
 <script type="text/javascript" src="<?php echo $this->getDebugMediaUrl(); ?>js/toolbar.js"></script>
+<script type="text/javascript" src="<?php echo $this->getDebugMediaUrl(); ?>js/custom.js"></script>
+
 <div id="djDebug" style="display:none;">
 	<div style="display:none;" id="djDebugToolbar">
 		<ul id="djDebugPanelList">
             <?php if( $panels ): ?>
-            <li><a id="djHideToolBarButton" href="#" title="<?php echo $this->__("Hide Toolbar"); ?>"><?php echo $this->__("Hide") ?> &raquo;</a></li>
+
             <?php else: ?>
 			<li id="djDebugButton">DEBUG</li>
             <?php endif; ?>
@@ -35,11 +37,6 @@ var DEBUG_TOOLBAR_MEDIA_URL = "<?php echo $this->getDebugMediaUrl(); ?>";
                 <?php endif; ?>
 				</li>
             <?php endforeach; ?>
-            <li>
-                <a href="#" class="">About
-                    <br/><small>Version <?php echo $this->getVersion() ?></a></small>
-                </a>
-            </li>
 		</ul>
 	</div>
 	<div style="display:none;" id="djDebugToolbarHandle">

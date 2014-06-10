@@ -24,13 +24,13 @@
 
 #djDebug #djDebugToolbar {
 	background:#111;
-	width:200px;
+	height:63px;
 	z-index:100000000;
 	position:fixed;
-	top:0;
+    left:0;
 	bottom:0;
 	right:0;
-	opacity:0.9;
+	opacity:1;
 }
 
 #djDebug #djDebugToolbar small {
@@ -48,7 +48,7 @@
 	color:#fff;
 	display:block;
 	font-weight:bold;
-	float:none;
+	float:left;
 	margin:0;
 	padding:0;
 	position:relative;
@@ -145,16 +145,16 @@
 }
 
 #djDebug .panelContent {
-	display:none;
+	display:block;
 	position:fixed;
 	margin:0;
 	top:0;
-	right:200px;
-	bottom:0;
-	left:0px;
+	right:0;
+	bottom:63px;
 	background-color:#eee;
 	color:#666;
 	z-index:100000000;
+    width: 10px;
 }
 
 #djDebug .panelContent > div {
