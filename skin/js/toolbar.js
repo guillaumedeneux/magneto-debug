@@ -28,9 +28,11 @@
 				}
 				current = $('#djDebug #' + this.className);
 				if (current.is(':visible')) {
+                    console.log(':visible');
 				    $(document).trigger('close.djDebug');
 					$(this).parent().removeClass('active');
 				} else {
+                    console.log('!:visible');
 					$('.panelContent').hide(); // Hide any that are already open
 					current.show();
 					$('#djDebugToolbar li').removeClass('active');

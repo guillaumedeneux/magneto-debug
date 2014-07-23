@@ -11,6 +11,8 @@ document.observe("dom:loaded", function() {
 
 Event.observe(window, "resize", function() { resizeWindow()});
 
+
+
 function resizeWindow(){
     var sizeBody = $$('body')[0].getWidth();
     var sizeWindow = window.innerWidth;
