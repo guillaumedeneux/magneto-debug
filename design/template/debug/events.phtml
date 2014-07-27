@@ -1,0 +1,27 @@
+<?php $events = $this->getEvents(); ?>
+<table>
+	<thead>
+		<tr>
+            <th><?php echo $this->__("Events") ?></th>
+            <th><?php echo $this->__("Observers") ?></th>
+		</tr>
+	</thead>
+    <tbody>
+        <?php $row = 0; ?>
+        <?php foreach($events as $event ): ?>
+            <tr class="<?php echo (($row % 2)?'djDebugOdd':'djDebugEven') ?>">
+                <td><?php echo $event['event'] ?></td>
+                <td>
+                    <ul>
+                        <?php if(isset($event['observers'])): ?>
+                            <?php foreach ( $event['observers'] as $observer) : ?>
+                                <li><?php echo $observer ?></li>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </ul>
+                </td>
+            </tr>
+            <?php $row++; ?>
+        <?php endforeach; ?>
+	</tbody>
+</table>

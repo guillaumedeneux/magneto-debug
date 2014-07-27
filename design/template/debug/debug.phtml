@@ -52,7 +52,6 @@ var DEBUG_TOOLBAR_MEDIA_URL = "<?php echo $this->getDebugMediaUrl(); ?>";
         <?php if( $panel['has_content'] ): ?>
             <div id="<?php echo $panel['dom_id'] ?>" class="panelContent">
                 <div class="djDebugPanelContent">
-                    <a href="" class="djDebugClose"><?php echo $this->__("Close"); ?></a>
                     <div class="scroll">
                         <?php echo $this->getChildHtml($panel['template']) ?>
                     </div>

@@ -4,6 +4,7 @@
 $$('body')[0].setStyle({
     float: 'left'
 });
+window.self.resizeTo(250, 250);
 
 document.observe("dom:loaded", function() {
     resizeWindow();
@@ -16,7 +17,7 @@ Event.observe(window, "resize", function() { resizeWindow()});
 function resizeWindow(){
     var sizeBody = $$('body')[0].getWidth();
     var sizeWindow = window.innerWidth;
-    console.log(sizeWindow);
+    console.log(sizeBody);
     var diffsize = sizeWindow - sizeBody;
     $$('.panelContent').each(
         function (Element) {

@@ -37,13 +37,13 @@ $layoutBlocks = $this->getLayoutBlocks();
                 <td><?php echo $row ?></td>
                 <td><?php echo $block['layout_name'] ?></td>
                 <td>
-                    <a href="<?php echo $this->getViewBlockUrl($block['class']) ?>"
-                       class="remoteCall"><?php echo $block['class'] ?></a>
+                    <a href="http://localhost:8091/?message=<?php echo $this->getViewBlockUrl($block['class']) ?>:0"
+                       onclick="var ajax = new XMLHttpRequest(); ajax.open('GET', this.href); ajax.send(null); return false;" ><?php echo $block['class'] ?></a>
                 </td>
                 <td>
-                <?php if($block['template']):?> 
-                    <a href="<?php echo $this->getViewTemplateUrl($block['template']) ?>"
-                       class="remoteCall toggletemplate"><?php echo $block['template'] ?></a>
+                <?php if($block['template']):?>
+                    <a href="http://localhost:8091/?message=<?php echo $this->getViewTemplateUrl($block['template']) ?>:0" class="toggletemplate"
+                       onclick="var ajax = new XMLHttpRequest(); ajax.open('GET', this.href); ajax.send(null); return false;" ><?php echo $block['template'] ?></a>
                 <?php endif; ?>
                 </td>
                 <td>

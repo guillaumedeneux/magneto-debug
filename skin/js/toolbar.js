@@ -21,23 +21,24 @@
 	var djdt = {
 		init: function() {
 			$('#djDebug').show();
-			var current = null;
+
+			var linkCurrent = $$('#djDebugPanelList li a').first();
+            $(linkCurrent).parent().addClass('active');
+            var current = $('#djDebug #' + linkCurrent.readAttribute('class'));
+            $('.panelContent').hide();
+            current.show();
+
 			$('#djDebugPanelList li a').click(function() {
 				if (!this.className) {
 					return false;
 				}
 				current = $('#djDebug #' + this.className);
-				if (current.is(':visible')) {
-                    console.log(':visible');
-				    $(document).trigger('close.djDebug');
-					$(this).parent().removeClass('active');
-				} else {
-                    console.log('!:visible');
-					$('.panelContent').hide(); // Hide any that are already open
-					current.show();
-					$('#djDebugToolbar li').removeClass('active');
-					$(this).parent().addClass('active');
-				}
+
+                $('.panelContent').hide(); // Hide any that are already open
+                current.show();
+                $('#djDebugToolbar li').removeClass('active');
+                $(this).parent().addClass('active');
+
 				return false;
 			});
 			$('#djDebug a.djDebugClose').click(function() {

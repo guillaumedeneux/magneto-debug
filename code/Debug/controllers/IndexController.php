@@ -301,19 +301,19 @@ class Magneto_Debug_IndexController extends Mage_Core_Controller_Front_Action
             return;
         }
 
-        $moduleCurrentStatus = $moduleConfig->is('active');
-        $moduleNewStatus = !$moduleCurrentStatus;
         $moduleConfigFile = $config->getOptions()->getEtcDir() . DS . 'modules' . DS . $moduleName . '.xml';
         $configContent = file_get_contents($moduleConfigFile);
 
-        function strbool($value) {
-            return $value ? 'true' : 'false';
-        }
+        preg_match('/\<active\>([a-z0-9]+)\<\/active\>/iUs',$configContent,$matches);
 
-        $contents = '<br/>Active status switched to ' . (string)$moduleNewStatus . ' for module {$moduleName} in file {$moduleConfigFile}:';
+        $moduleCurrentStatus = ($matches[1]=='true' || $matches[1]=='1')?'true':'false';
+        $moduleNewStatus = ($moduleCurrentStatus=='true')?'false' : 'true';
+
+
+        $contents = '<br/>Active status switched to ' . $moduleNewStatus . ' for module {$moduleName} in file {$moduleConfigFile}:';
         $contents .= '<br/><code>' . htmlspecialchars($configContent) . '</code>';
 
-        $configContent = str_replace('<active>' . (string)$moduleCurrentStatus . '</active>', '<active>' . (string)$moduleNewStatus . '</active>', $configContent);
+        $configContent = str_replace('<active>' . $moduleCurrentStatus . '</active>', '<active>' . $moduleNewStatus . '</active>', $configContent);
 
         if (file_put_contents($moduleConfigFile, $configContent) === FALSE) {
             echo $this->_debugPanel($title, "Failed to write configuration. (Web Server's permissions for {$moduleConfigFile}?!)");
