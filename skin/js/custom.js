@@ -1,10 +1,8 @@
 /**
  * Created by guillaumedeneux on 09/06/2014.
  */
-$$('body')[0].setStyle({
-    float: 'left'
-});
-window.self.resizeTo(250, 250);
+var minWidthBar = 400;
+var bodyElem = $$('body')[0];
 
 document.observe("dom:loaded", function() {
     resizeWindow();
@@ -12,13 +10,15 @@ document.observe("dom:loaded", function() {
 
 Event.observe(window, "resize", function() { resizeWindow()});
 
-
-
 function resizeWindow(){
-    var sizeBody = $$('body')[0].getWidth();
+    var sizeBody = bodyElem.getWidth();
     var sizeWindow = window.innerWidth;
-    console.log(sizeBody);
-    var diffsize = sizeWindow - sizeBody;
+    var diffsize = Math.max(sizeWindow - sizeBody, minWidthBar);
+
+    bodyElem.setStyle({
+        float: 'left',
+        width: sizeWindow - diffsize+'px'
+    });
     $$('.panelContent').each(
         function (Element) {
             Element.setStyle({
