@@ -2,23 +2,21 @@
 <table>
 	<thead>
 		<tr>
-            <th><?php echo $this->__("Events") ?></th>
-            <th><?php echo $this->__("Observers") ?></th>
+            <th><?php echo $this->__("Events/Observers") ?></th>
 		</tr>
 	</thead>
     <tbody>
         <?php $row = 0; ?>
         <?php foreach($events as $event ): ?>
             <tr class="<?php echo (($row % 2)?'djDebugOdd':'djDebugEven') ?>">
-                <td><?php echo $event['event'] ?></td>
-                <td>
-                    <ul>
-                        <?php if(isset($event['observers'])): ?>
+                <td><?php echo $event['event'] ?>
+                    <?php if(isset($event['observers'])): ?>
+                        <ul>
                             <?php foreach ( $event['observers'] as $observer) : ?>
-                                <li><?php echo $observer ?></li>
+                                <li>|-> <?php echo $observer ?></li>
                             <?php endforeach; ?>
-                        <?php endif; ?>
-                    </ul>
+                        </ul>
+                    <?php endif; ?>
                 </td>
             </tr>
             <?php $row++; ?>
