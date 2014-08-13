@@ -9,11 +9,11 @@
         <?php $row = 0; ?>
         <?php foreach($events as $event ): ?>
             <tr class="<?php echo (($row % 2)?'djDebugOdd':'djDebugEven') ?>">
-                <td><?php echo $event['event'] ?>
+                <td><b><?php echo $event['event'] ?></b>
                     <?php if(isset($event['observers'])): ?>
                         <ul>
                             <?php foreach ( $event['observers'] as $observer) : ?>
-                                <li>|-> <?php echo $observer ?></li>
+                                <li>|-> <i><?php echo $observer ?><i></li>
                             <?php endforeach; ?>
                         </ul>
                     <?php endif; ?>
