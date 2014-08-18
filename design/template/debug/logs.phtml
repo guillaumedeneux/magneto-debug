@@ -1,19 +1,22 @@
-<h4><?php echo $this->__('View content of logs file'); ?></h4>
+<?php $logs = $this->getLogs(); ?>
 
-<?php $files  =array(); ?>
-<?php foreach($files as $file): ?>
-    <a class="remoteCall toggleTemplate"
-       href="<?php echo Mage::getUrl('debug/index/viewLog', array('file' => $file)); ?>">
-        <?php echo $file; ?>
-    </a>
+<?php foreach ($logs as $file => $logs): ?>
+    <?php $row = 0; ?>
+    <table class="debug-logs">
+        <thead>
+            <tr>
+                <th><?php echo $file ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($logs as $content) : ?>
+                <tr class="<?php echo(($row % 2) ? 'djDebugOdd' : 'djDebugEven') ?>">
+                    <td>
+                        <?php echo $content ?>
+                    </td>
+                </tr>
+                <?php $row++; ?>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 <?php endforeach; ?>
-
-
-<a class="remoteCall toggleTemplate"
-   href="<?php echo Mage::getUrl('debug/index/viewLog', array('file' => Mage::getStoreConfig('dev/log/file'))); ?>">
-    <?php echo Mage::getStoreConfig('dev/log/file'); ?>
-</a>
-<a class="remoteCall toggleTemplate"
-   href="<?php echo Mage::getUrl('debug/index/viewLog', array('file' => Mage::getStoreConfig('dev/log/exception_file'))); ?>">
-    <?php echo Mage::getStoreConfig('dev/log/exception_file'); ?>
-</a>

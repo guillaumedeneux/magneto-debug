@@ -176,6 +176,21 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
         return $panel;
     }
 
+    protected function createAnalyticsPanel() {
+        $title = 'Analytics';
+
+        $panel = array(
+            'title' => $title,
+            'has_content' => true,
+            'url' => NULL,
+            'dom_id' => 'debug-panel-' . $title,
+            'nav_title' => $title,
+            'nav_subtitle' => "Magento vs custom",
+            'template' => 'debug_analytics_panel',           // child block defined in layout xml
+        );
+        return $panel;
+    }
+
     protected function createLogsPanel()
     {
         $title = 'Logs';
@@ -209,6 +224,8 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
     
     public function getPanels() {
         $panels = array();
+        $panels[] = $this->createLogsPanel();
+        $panels[] = $this->createAnalyticsPanel();
         $panels[] = $this->createEventsPanel();
         $panels[] = $this->createVersionsPanel();
 		$panels[] = $this->createControllerPanel();
@@ -218,7 +235,6 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
         $panels[] = $this->createPerformancePanel();
         $panels[] = $this->createConfigPanel();
         $panels[] = $this->createUtilsPanel();
-        $panels[] = $this->createLogsPanel();
         // TODO: Implement preferences panel (toggle panels visibility from toolbar)
 //        $panels[] = $this->createPreferencesPanel();
 

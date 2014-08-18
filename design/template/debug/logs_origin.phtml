@@ -1,0 +1,19 @@
+<h4><?php echo $this->__('View content of logs file'); ?></h4>
+
+<?php $files  =array(); ?>
+<?php foreach($files as $file): ?>
+    <a class="remoteCall toggleTemplate"
+       href="<?php echo Mage::getUrl('debug/index/viewLog', array('file' => $file)); ?>">
+        <?php echo $file; ?>
+    </a>
+<?php endforeach; ?>
+
+
+<a class="remoteCall toggleTemplate"
+   href="<?php echo Mage::getUrl('debug/index/viewLog', array('file' => Mage::getStoreConfig('dev/log/file'))); ?>">
+    <?php echo Mage::getStoreConfig('dev/log/file'); ?>
+</a>
+<a class="remoteCall toggleTemplate"
+   href="<?php echo Mage::getUrl('debug/index/viewLog', array('file' => Mage::getStoreConfig('dev/log/exception_file'))); ?>">
+    <?php echo Mage::getStoreConfig('dev/log/exception_file'); ?>
+</a>

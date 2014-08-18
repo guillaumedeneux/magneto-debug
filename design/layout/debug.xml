@@ -3,7 +3,8 @@
     <default>
         <reference name="before_body_end">
             <block type="debug/debug" name="debug_panels" template="debug/debug.phtml">
-                <block type="debug/abstract" name="debug_logs_panel" template="debug/logs.phtml"/>
+                <block type="debug/logs" name="debug_logs_panel" template="debug/logs.phtml"/>
+                <block type="debug/analytics" name="debug_analytics_panel" template="debug/analytics.phtml"/>
                 <block type="debug/events" name="debug_events_panel" template="debug/events.phtml"/>
                 <block type="debug/versions" name="debug_versions_panel" template="debug/versions.phtml"/>
                 <block type="debug/blocks" name="debug_blocks_panel" template="debug/blocks.phtml"/>
@@ -19,4 +20,4 @@
             </block>
         </reference>
     </default>
-</layout>   
+</layout>

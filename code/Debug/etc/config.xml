@@ -29,18 +29,6 @@
                 <class>Magneto_Debug_Model</class>
             </debug>
         </models>
-        <resources>
-            <debug_write>
-                <connection>
-                    <use>core_write</use>
-                </connection>
-            </debug_write>
-            <debug_read>
-                <connection>
-                    <use>core_read</use>
-                </connection>
-            </debug_read>
-        </resources>
         <blocks>
             <debug>
                 <class>Magneto_Debug_Block</class>
@@ -150,16 +138,18 @@
         <debug>
             <options>
                 <enable>1</enable>
+                <debug_panel_events_visibility>1</debug_panel_events_visibility>
+                <debug_panel_analytics_visibility>1</debug_panel_analytics_visibility>
                 <debug_panel_versions_visibility>1</debug_panel_versions_visibility>
-                <debug_panel_performance_visibility>1</debug_panel_performance_visibility>
+                <debug_panel_performance_visibility>0</debug_panel_performance_visibility>
                 <debug_panel_configuration_visibility>1</debug_panel_configuration_visibility>
                 <debug_panel_blocks_visibility>1</debug_panel_blocks_visibility>
                 <debug_panel_layout_visibility>1</debug_panel_layout_visibility>
                 <debug_panel_controller_visibility>1</debug_panel_controller_visibility>
                 <debug_panel_models_visibility>1</debug_panel_models_visibility>
-                <debug_panel_utilities_visibility>1</debug_panel_utilities_visibility>
-                <debug_panel_preferences_visibility>1</debug_panel_preferences_visibility>
-                <debug_panel_logs_visibility>1</debug_panel_logs_visibility>
+                <debug_panel_utilities_visibility>0</debug_panel_utilities_visibility>
+                <debug_panel_preferences_visibility>0</debug_panel_preferences_visibility>
+                <debug_panel_logs_visibility>0</debug_panel_logs_visibility>
             </options>
         </debug>
     </default>

@@ -232,6 +232,133 @@ class Magneto_Debug_Helper_Data extends Mage_Core_Helper_Abstract
         return $line_arr;
     }
 
+
+    /**
+     * Read last lines of file (able to read huge file)
+     *
+     * @param string        $file
+     * @param int           $lines
+     * @param null|string   $header
+     *
+     * @return array|int
+     */
+    public function getLastRowsTime($file, $time)
+    {
+        // Number of lines read per time
+        $header = null;
+        $bufferlength = 1024;
+        $aliq = "";
+        $line_arr = array();
+        $tmp = array();
+        $tmp2 = array();
+        $lines = 30;
+
+        if (!($handle = fopen($file , "r"))) {
+            return array("Could not fopen $file");
+        }
+
+        if (!$handle) {
+            return array("Bad file handle");
+        }
+
+        // Get size of file
+        fseek($handle, 0, SEEK_END);
+        $filesize = ftell($handle);
+
+        $position= - min($bufferlength,$filesize);
+
+        while ($lines > 0) {
+            if (fseek($handle, $position, SEEK_END)) {
+                return array("Could not fseek");
+            }
+
+            unset($buffer);
+            $buffer = "";
+            // Read some data starting fromt he end of the file
+            if (!($buffer = fread($handle, $bufferlength))) {
+                return array("File is empty");
+            }
+
+            // Split by line
+            $cnt = (count($tmp) - 1);
+            for ($i = 0; $i < count($tmp); $i++ ) {
+                unset($tmp[0]);
+            }
+            unset($tmp);
+            $tmp = explode("\n", $buffer);
+
+            // Handle case of partial previous line read
+            if ($aliq != "") {
+                $tmp[count($tmp) - 1] .= $aliq;
+            }
+
+            unset($aliq);
+            // Take out the first line which may be partial
+            $aliq = array_shift($tmp);
+            $read = count($tmp);
+            $tmp = $this->cleanPrefixLine($tmp);
+            $tmp = $this->setRemoteCall($tmp);
+
+
+            // Read too much (exceeded indicated lines to read)
+            if ($read >= $lines) {
+                // Slice off the lines we need and merge with current results
+                unset($tmp2);
+                $tmp2 = array_slice($tmp, $read - $lines);
+                $line_arr = array_merge($tmp2, $line_arr);
+
+                // Break the loop
+                $lines = 0;
+            }
+            // Reached start of file
+            elseif (-$position >= $filesize) {
+                // Get back $aliq which contains the very first line of the file
+                unset($tmp2);
+                $tmp2[0] = $aliq;
+
+                $line_arr = array_merge($tmp2, $tmp, $line_arr);
+
+                // Break the loop
+                $lines = 0;
+            }
+            // Continue reading
+            else {
+                // Add the freshly grabbed lines on top of the others
+                $line_arr = array_merge($tmp, $line_arr);
+                $lines -= $read;
+
+                // No longer a full buffer's worth of data to read
+                if ($position - $bufferlength < -$filesize) {
+                    $bufferlength = $filesize + $position;
+                    $position = -$filesize;
+                }
+                // Still >= $bufferlength worth of data to read
+                else {
+                    $position -= $bufferlength;
+                }
+            }
+        }
+
+        fclose($handle);
+
+        return $line_arr;
+    }
+
+    public function cleanPrefixLine($string)
+    {
+        $string = preg_replace('/^(.+[a-z]+ \([0-9]{1}\):)/iUs','',$string);
+
+        return $string;
+    }
+    public function setRemoteCall($string)
+    {
+        $string = preg_replace('/(Users\/guillaumedeneux\/Sites\/Magento\/)?(([a-z]+\/)+[a-z]+\.[a-z]+)[\(\[:]{0,1}([0-9]*)[\)\]]{0,1}/is','<a href="http://localhost:8091/?message=$1$2:$4"  onclick="var ajax = new XMLHttpRequest(); ajax.open(\'GET\', this.href); ajax.send(null); return false;">$2:$4</a>',$string);
+        //set default value 0;
+        $string = preg_replace('/(([a-z]+\/)+[a-z]+\.[a-z]+):(\s)/is','$1:0$3',$string);
+
+        return $string;
+    }
+
     public function isPanelVisible($panelTitle)
     {
         return Mage::getStoreConfig('debug/options/debug_panel_' . strtolower($panelTitle) . '_visibility');
