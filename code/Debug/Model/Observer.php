@@ -120,6 +120,18 @@ class Magneto_Debug_Model_Observer {
         return $this;
     }
 
+    public function onPrepareLayoutBefore(Varien_Event_Observer $observer){
+
+        $event = $observer->getEvent();
+        /* @var $block Mage_Core_Block_Abstract */
+        $block = $event->getBlock();
+
+        // Don't list blocks from Debug module
+        if( $this->_skipBlock($block) ) {
+            return $this;
+        }
+        Varien_Profiler::start('BLOCK-DEBUG:'.get_class($block));
+    }
     /**
      * Listens to core_block_abstract_to_html_after event end computes the time
      * spent in block's _toHtml (rendering time).
@@ -141,6 +153,8 @@ class Magneto_Debug_Model_Observer {
 
         $duration = microtime(true) - $blockStruct['rendered_at'];
         $this->blocks[$block->getNameInLayout()]['rendered_in'] = $duration;
+        Varien_Profiler::stop('BLOCK-DEBUG:'.get_class($block));
+
     }
 
     function onActionPostDispatch(Varien_Event_Observer $event) {

@@ -51,6 +51,16 @@
                 </observers>
             </controller_action_layout_generate_blocks_after>
 
+            <core_block_abstract_prepare_layout_before>
+                <observers>
+                    <debug_observer>
+                        <type>singleton</type>
+                        <class>debug/observer</class>
+                        <method>onPrepareLayoutBefore</method>
+                    </debug_observer>
+                </observers>
+            </core_block_abstract_prepare_layout_before>
+
             <core_block_abstract_to_html_before>
                 <observers>
                     <debug_observer>

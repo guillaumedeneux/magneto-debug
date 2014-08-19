@@ -347,6 +347,8 @@ class Magneto_Debug_Helper_Data extends Mage_Core_Helper_Abstract
     public function cleanPrefixLine($string)
     {
         $string = preg_replace('/^(.+[a-z]+ \([0-9]{1}\):)/iUs','',$string);
+        $string = str_replace('<','&lt;',$string);
+        $string = str_replace('>','&gt;',$string);
 
         return $string;
     }

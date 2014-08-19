@@ -1,13 +1,9 @@
 <?php $logs = $this->getLogs(); ?>
 
 <?php foreach ($logs as $file => $logs): ?>
+    <h4><?php echo $file ?></h4>
     <?php $row = 0; ?>
     <table class="debug-logs">
-        <thead>
-            <tr>
-                <th><?php echo $file ?></th>
-            </tr>
-        </thead>
         <tbody>
             <?php foreach ($logs as $content) : ?>
                 <tr class="<?php echo(($row % 2) ? 'djDebugOdd' : 'djDebugEven') ?>">
