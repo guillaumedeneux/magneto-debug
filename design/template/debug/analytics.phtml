@@ -69,11 +69,12 @@
         for(var key in dataBrut){
             var data = {};
             data.color = randomColor(50);
-            data.highlight = randomColor(50);
+            data.highlight = '#9e9e9e';
             data.value = dataBrut[key];
             data.label = key;
             datas.push(data);
         }
+        console.log(datas);
         return datas;
     }
     //]]>

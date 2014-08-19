@@ -31,8 +31,7 @@ class Magneto_Debug_Block_Analytics extends Magneto_Debug_Block_Abstract
     public function getResume($type)
     {
         $result = array();
-        $result['mage']=0;
-        $result['custom']=0;
+        $result['Mage']=0;
 
         foreach ($this->getAnalytics() as $module => $analytics) {
             $isMage = preg_match('/^Mage_/',$module);
@@ -41,20 +40,23 @@ class Magneto_Debug_Block_Analytics extends Magneto_Debug_Block_Abstract
                 foreach ($analytics as $typeClass => $classes) {
                     if($type==$typeClass){
                         foreach ($classes as $class => $timer) {
+                            if($timer===0)
+                                continue;
+
                             if($isMage){
-                             //   $result['mage']['value']+= number_format($timer, 2, '.', '');
-                                $result['mage']+= number_format($timer, 2, '.', '');
+                                $result['Mage']+= (float)number_format($timer, 2, '.', '');
                             }else{
-                             //   $result['custom']['value']+= number_format($timer, 2, '.', '');
-                                $result['custom']+= number_format($timer, 2, '.', '');
+                                if(!isset($result[$module])){
+                                    $result[$module] = (float)number_format($timer, 2, '.', '');
+                                }else{
+                                    $result[$module] +=  (float)number_format($timer, 2, '.', '');
+                                }
                             }
                         }
                     }
                 }
             }
         }
-     //   $result['mage']['percent'] = ceil($result['mage']['value']*100 / ($result['mage']['value'] + $result['custom']['value']));
-       // $result['custom']['percent'] = floor($result['custom']['value']*100 / ($result['mage']['value'] + $result['custom']['value']));
 
         return $result;
 
