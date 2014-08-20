@@ -54,9 +54,33 @@ class Magneto_Debug_Model_Observer {
 		if( $profiler ) {
 			$queries = $profiler->getQueryProfiles();
 		}
-		
 		return $queries;
 	 }
+
+    public function getQueriesTime() {
+        //TODO: implement profiler for connections other than 'core_write'
+        $profiler = Mage::getSingleton('core/resource')->getConnection('core_write')->getProfiler();
+        $queries = array();
+        $queriesTime = array();
+        $queriesMerged = array();
+
+        if( $profiler ) {
+            $queries = $profiler->getQueryProfiles();
+        }
+
+        foreach ($queries as $query) {
+            $queriesTime[$query->getQuery()] = $query->getElapsedSecs();
+        }
+        foreach ($this->collections as $k => $query) {
+            if(isset($queriesTime[$query['sql']])){
+                $queriesMerged[$k]['sql'] = $query['sql'];
+                $queriesMerged[$k]['class'] = $query['class'];
+                $queriesMerged[$k]['time'] = $queriesTime[$query['sql']];
+            }
+        }
+
+        return $queriesMerged;
+    }
 
     public function onLayoutGenerate(Varien_Event_Observer $observer)
     {
@@ -82,43 +106,6 @@ class Magneto_Debug_Model_Observer {
         }
     }
 
-    /**
-     * Listens to core_block_abstract_to_html_before event and records blocks
-     * that are about to being rendered.
-     *
-     * @param Varien_Event_Observer $observer
-     * @return Magneto_Debug_Model_Observer
-     */
-    public function onBlockToHtml(Varien_Event_Observer $observer) {
-        /** @var $event Varien_Event */
-        $event = $observer->getEvent();
-        /* @var $block Mage_Core_Block_Abstract */
-        $block = $event->getBlock();
-
-        if( $this->_skipBlock($block) ) {
-            return $this;
-        }
-
-        $blockStruct = array();
-        $blockStruct['class'] = get_class($block);
-        $blockStruct['layout_name'] = $block->getNameInLayout();
-        $blockStruct['rendered_at'] = microtime(true);
-
-		if( method_exists($block, 'getTemplateFile') ) {
-        	$blockStruct['template'] = $block->getTemplateFile();
-		} else {
-			$blockStruct['template'] = '';
-		}
-		if( method_exists($block, 'getViewVars') ) {
-        	$blockStruct['context'] = $block->getViewVars();
-		} else {
-			$blockStruct['context'] = NULL;
-		}
-
-		$this->blocks[$block->getNameInLayout()] = $blockStruct;
-
-        return $this;
-    }
 
     public function onPrepareLayoutBefore(Varien_Event_Observer $observer){
 
@@ -130,7 +117,47 @@ class Magneto_Debug_Model_Observer {
         if( $this->_skipBlock($block) ) {
             return $this;
         }
+    }
+
+    /**
+     * Listens to core_block_abstract_to_html_before event and records blocks
+     * that are about to being rendered.
+     *
+     * @param Varien_Event_Observer $observer
+     * @return Magneto_Debug_Model_Observer
+     */
+    public function onBlockToHtml(Varien_Event_Observer $observer) {
+
+        /** @var $event Varien_Event */
+        $event = $observer->getEvent();
+        /* @var $block Mage_Core_Block_Abstract */
+        $block = $event->getBlock();
+
+        if( $this->_skipBlock($block) ) {
+            return $this;
+        }
+
         Varien_Profiler::start('BLOCK-DEBUG:'.get_class($block));
+
+        $blockStruct = array();
+        $blockStruct['class'] = get_class($block);
+        $blockStruct['layout_name'] = $block->getNameInLayout();
+        $blockStruct['rendered_at'] = microtime(true);
+
+        if( method_exists($block, 'getTemplateFile') ) {
+            $blockStruct['template'] = $block->getTemplateFile();
+        } else {
+            $blockStruct['template'] = '';
+        }
+        if( method_exists($block, 'getViewVars') ) {
+            $blockStruct['context'] = $block->getViewVars();
+        } else {
+            $blockStruct['context'] = NULL;
+        }
+
+        $this->blocks[$block->getNameInLayout()] = $blockStruct;
+
+        return $this;
     }
     /**
      * Listens to core_block_abstract_to_html_after event end computes the time

@@ -424,11 +424,13 @@
 }
 #djDebug .container-myChart-total{
     position: absolute;
-    top: 126px;
+    top: 134px;
     left: 57px;
-    font-size: 27px;
+    font-size: 24px;
+    line-height: 27px;
     font-weight: bold;
     color: grey;
     text-align: center;
     width: 85px;
 }
+#fusioncharts-tooltip-element { zIndex: 99999 !important }

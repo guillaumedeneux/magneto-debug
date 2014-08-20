@@ -161,6 +161,10 @@
                 <debug_panel_preferences_visibility>0</debug_panel_preferences_visibility>
                 <debug_panel_logs_visibility>0</debug_panel_logs_visibility>
             </options>
+            <sort_order>
+                <debug_panel_utilities>11</debug_panel_utilities>
+                <debug_panel_preferences>12</debug_panel_preferences>
+            </sort_order>
         </debug>
     </default>
 

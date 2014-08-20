@@ -17,7 +17,7 @@
         animationSteps : 100,
 
         //String - Animation easing effect
-        animationEasing : "easeOutBounce",
+        animationEasing : "easeOutQuart",
 
         //Boolean - Whether we animate the rotation of the Doughnut
         animateRotate : true,
@@ -25,7 +25,7 @@
         //Boolean - Whether we animate scaling the Doughnut from the centre
         animateScale : false,
 
-        tooltipTemplate: "<%= value %>s",
+        tooltipTemplate: "<%= value %>ms",
 
         //String - A legend template
         legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\" class=\"picto-<%=name.toLowerCase()%>-legend\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
@@ -51,7 +51,6 @@
             data.label = key;
             datas.push(data);
         }
-        console.log(datas);
         return datas;
     }
     //]]>
@@ -59,7 +58,7 @@
 <?php foreach ($this->getList() as $type => $label) : ?>
     <div id="container-myChart-<?php echo $type; ?>" class="debug-container-analytics">
         <h4><?php echo $label; ?></h4>
-        <div class="container-myChart-total"><?php echo array_sum($this->getResume($type)); ?>s</div>
+        <div class="container-myChart-total"><?php echo array_sum($this->getResume($type)); ?>ms</div>
         <canvas id="myChart-<?php echo $type; ?>" width="170" height="170"></canvas>
     </div>
     <script>

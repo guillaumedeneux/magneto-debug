@@ -12,6 +12,10 @@ class Magneto_Debug_Block_Models extends Magneto_Debug_Block_Abstract
 		return Mage::getSingleton('debug/observer')->getQueries();
 	}
 
+    protected function getQueriesTime() {
+        return Mage::getSingleton('debug/observer')->getQueriesTime();
+    }
+
     protected function getCollections() {
         return Mage::getSingleton('debug/observer')->getCollections();
     }

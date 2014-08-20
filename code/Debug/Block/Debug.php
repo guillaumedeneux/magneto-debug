@@ -30,7 +30,7 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
             'nav_title' => $title,
             'nav_subtitle' => 'Subtitle for ' . $title,
             'content' => 'Some content for ' . $title,
-            'template' => 'debug_versions_panel'
+            'template' => 'debug_versions_panel',
         );
         return $panel;
     }
@@ -46,6 +46,7 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
             'nav_title' => $title,
             'nav_subtitle' => 'Magento events observer',
             'template' => 'debug_events_panel',           // child block defined in layout xml
+            'order' => Mage::getStoreConfig('debug/order_options/debug_panel_events')
         );
         return $panel;
     }
@@ -62,7 +63,8 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
             'nav_title' => $title,
             'nav_subtitle' => 'Magento modules',
             'template' => 'debug_versions_panel',           // child block defined in layout xml
-        );
+             'order' => Mage::getStoreConfig('debug/order_options/debug_panel_versions')
+         );
         return $panel;
     }    
 	
@@ -77,6 +79,7 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
             'nav_title' => $title,
             'nav_subtitle' => "TIME: {$helper->getScriptDuration()}s MEM: {$helper->getMemoryUsage()}",
             'template' => 'debug_performance_panel',
+            'order' => Mage::getStoreConfig('debug/order_options/debug_panel_performance')
         );
         return $panel;
     } 
@@ -92,6 +95,7 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
             'nav_title' => $title,
             'nav_subtitle' => "Search configurations",
             'template' => 'debug_config_panel',           // child block defined in layout xml
+            'order' => Mage::getStoreConfig('debug/order_options/debug_panel_configuration')
         );
         return $panel;
     }
@@ -109,6 +113,7 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
             'nav_title' => $title,
             'nav_subtitle' => "{$nBlocks} used blocks",
             'template' => 'debug_blocks_panel',           // child block defined in layout xml
+            'order' => Mage::getStoreConfig('debug/order_options/debug_panel_blocks')
         );
         return $panel;
     }
@@ -124,6 +129,7 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
             'nav_title' => $title,
             'nav_subtitle' => "Layout handlers",
             'template' => 'debug_layout_panel',           // child block defined in layout xml
+            'order' => Mage::getStoreConfig('debug/order_options/debug_panel_layout')
         );
         return $panel;
     }
@@ -139,6 +145,7 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
             'nav_title' => $title,
             'nav_subtitle' => 'Controller and request',
             'template' => 'debug_controller_panel',           // child block defined in layout xml
+            'order' => Mage::getStoreConfig('debug/order_options/debug_panel_controller')
         );
         return $panel;
     }   
@@ -156,6 +163,7 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
             'nav_title' => $title,
             'nav_subtitle' => "{$nModels} models, {$nQueries} queries",
             'template' => 'debug_models_panel',           // child block defined in layout xml
+            'order' => Mage::getStoreConfig('debug/order_options/debug_panel_models')
         );
         return $panel;
     } 
@@ -172,6 +180,7 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
             'nav_title' => $title,
             'nav_subtitle' => "Quick actions",
             'template' => 'debug_utils_panel',           // child block defined in layout xml
+            'order' => Mage::getStoreConfig('debug/order_options/debug_panel_utilities')
         );
         return $panel;
     }
@@ -187,6 +196,7 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
             'nav_title' => $title,
             'nav_subtitle' => "Magento vs custom",
             'template' => 'debug_analytics_panel',           // child block defined in layout xml
+            'order' => Mage::getStoreConfig('debug/order_options/debug_panel_analytics')
         );
         return $panel;
     }
@@ -203,6 +213,7 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
             'nav_title' => $title,
             'nav_subtitle' => "View logs",
             'template' => 'debug_logs_panel',           // child block defined in layout xml
+            'order' => Mage::getStoreConfig('debug/order_options/debug_panel_logs')
         );
         return $panel;
     }
@@ -218,6 +229,7 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
             'nav_title' => $title,
             'nav_subtitle' => "Customize Magneto Debug",
             'template' => 'debug_preferences_panel',           // child block defined in layout xml
+            'order' => Mage::getStoreConfig('debug/order_options/debug_panel_preferences')
         );
         return $panel;
     }
@@ -238,9 +250,19 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
         // TODO: Implement preferences panel (toggle panels visibility from toolbar)
 //        $panels[] = $this->createPreferencesPanel();
 
-        return $panels;
+        return $this->_sort($panels);
     }
 
+    protected function _sort($panels){
+
+        $newPanels = array();
+        foreach ($panels as $panel) {
+            $order = (isset($newPanels[$panel['order']]))? $panel['order']+1 : $panel['order'];
+            $newPanels[$order] = $panel;
+        }
+        ksort($newPanels);
+        return $newPanels;
+    }
     public function getVisiblePanels()
     {
         /* @var $helper Magneto_Debug_Helper_Data */
