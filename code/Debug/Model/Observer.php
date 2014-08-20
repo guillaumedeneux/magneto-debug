@@ -63,9 +63,9 @@ class Magneto_Debug_Model_Observer {
         $queries = array();
         $queriesTime = array();
         $queriesMerged = array();
+        $queries = $profiler->getQueryProfiles();
 
-        if( $profiler ) {
-            $queries = $profiler->getQueryProfiles();
+        if( $profiler && $queries ) {
             foreach ($queries as $query) {
                 $queriesTime[$query->getQuery()] = $query->getElapsedSecs();
             }
