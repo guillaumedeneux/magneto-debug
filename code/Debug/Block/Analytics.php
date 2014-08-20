@@ -2,7 +2,10 @@
 
 class Magneto_Debug_Block_Analytics extends Magneto_Debug_Block_Abstract
 {
-
+    public function getList(){
+        return array('block'=>$this->__('Block'),
+                     'model'=>$this->__('Model'));
+    }
     public function getAnalytics()
     {
         if(!$this->hasData('analytics')){
@@ -70,12 +73,12 @@ class Magneto_Debug_Block_Analytics extends Magneto_Debug_Block_Abstract
             $class = $part[2];
             list($namespace,$module,$type,$subClass) = explode('_',$class);
             $result['module'] = $namespace.'_'.$module;
-            $result['type'] = 'Model';
+            $result['type'] = 'model';
             $result['subClass'] = (is_array($subClass))? implode('_',$subClass):$subClass;
         }elseif(preg_match('/^BLOCK\-DEBUG\:([a-z_]+)$/is',$name, $matches)){
             list($namespace,$module,$type,$subClass) = explode('_',$matches[1]);
             $result['module'] = $namespace.'_'.$module;
-            $result['type'] =  'Block';
+            $result['type'] =  'block';
             $result['subClass'] =  (is_array($subClass))? implode('_',$subClass):$subClass;
 /*        }elseif(preg_match('/^DISPATCH EVENT:/is',$name)){
             $result['module'] = '';

@@ -1,17 +1,5 @@
-<div id="container-myChart-block" class="debug-container-analytics">
-    <h4><?php echo $this->__('Block'); ?></h4>
-    <canvas id="myChart-block" width="170" height="170"></canvas>
-</div>
-<div id="container-myChart-model" class="debug-container-analytics">
-    <h4><?php echo $this->__('Model'); ?></h4>
-    <canvas id="myChart-model" width="170" height="170"></canvas>
-</div>
-
 <script>
     //<![CDATA[
-    var ctxBlock = document.getElementById("myChart-block").getContext("2d");
-    var ctxModel = document.getElementById("myChart-model").getContext("2d");
-
     var options = {
         //Boolean - Whether we should show a stroke on each segment
         segmentShowStroke : true,
@@ -36,23 +24,12 @@
 
         //Boolean - Whether we animate scaling the Doughnut from the centre
         animateScale : false,
-        legend: {
-            horizontalAlignment: 'center',
-            verticalAlignment: 'bottom'
-        },
+
+        tooltipTemplate: "<%= value %>s",
+
         //String - A legend template
         legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\" class=\"picto-<%=name.toLowerCase()%>-legend\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
     };
-
-    var myChartBlock = new Chart(ctxBlock).Doughnut(generateObjectDatas(<?php echo json_encode($this->getResume('Block')); ?>),options);
-    var myChartModel = new Chart(ctxModel).Doughnut(generateObjectDatas(<?php echo json_encode($this->getResume('Model')); ?>),options);
-
-    var legendBlock = myChartBlock.generateLegend();
-    var legendModel = myChartModel.generateLegend();
-
-    //and append it to your page somewhere
-    $('container-myChart-block').insert(legendBlock);
-    $('container-myChart-model').insert(legendModel);
 
     function randomColor(brightness){
         function randomChannel(brightness){
@@ -79,3 +56,21 @@
     }
     //]]>
 </script>
+<?php foreach ($this->getList() as $type => $label) : ?>
+    <div id="container-myChart-<?php echo $type; ?>" class="debug-container-analytics">
+        <h4><?php echo $label; ?></h4>
+        <div class="container-myChart-total"><?php echo array_sum($this->getResume($type)); ?>s</div>
+        <canvas id="myChart-<?php echo $type; ?>" width="170" height="170"></canvas>
+    </div>
+    <script>
+        //<![CDATA[
+        var ctx_<?php echo $type; ?> = document.getElementById("myChart-<?php echo $type; ?>").getContext("2d");
+
+        var myChart_<?php echo $type; ?> = new Chart(ctx_<?php echo $type; ?>).Doughnut(generateObjectDatas(<?php echo json_encode($this->getResume($type)); ?>),options);
+
+        var legend_<?php echo $type; ?> = myChart_<?php echo $type; ?>.generateLegend();
+
+        $('container-myChart-<?php echo $type; ?>').insert(legend_<?php echo $type; ?>);
+        //]]>
+    </script>
+<?php endforeach; ?>
