@@ -70,7 +70,7 @@ class Magneto_Debug_Block_Analytics extends Magneto_Debug_Block_Abstract
                 }
             }
             if(Mage::getSingleton('core/resource')->getConnection('core_write')->getProfiler()){
-                $result = array_merge($this->_getQueries(),$result);
+                $result = array_merge_recursive($this->_getQueries(),$result);
             }
 
             $this->setData('analytics', $result);

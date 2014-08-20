@@ -58,7 +58,7 @@ class Magneto_Debug_Model_Observer {
 	 }
 
     public function getQueriesTime() {
-        //TODO: implement profiler for connections other than 'core_write'
+
         $profiler = Mage::getSingleton('core/resource')->getConnection('core_write')->getProfiler();
         $queries = array();
         $queriesTime = array();
