@@ -66,16 +66,15 @@ class Magneto_Debug_Model_Observer {
 
         if( $profiler ) {
             $queries = $profiler->getQueryProfiles();
-        }
-
-        foreach ($queries as $query) {
-            $queriesTime[$query->getQuery()] = $query->getElapsedSecs();
-        }
-        foreach ($this->collections as $k => $query) {
-            if(isset($queriesTime[$query['sql']])){
-                $queriesMerged[$k]['sql'] = $query['sql'];
-                $queriesMerged[$k]['class'] = $query['class'];
-                $queriesMerged[$k]['time'] = $queriesTime[$query['sql']];
+            foreach ($queries as $query) {
+                $queriesTime[$query->getQuery()] = $query->getElapsedSecs();
+            }
+            foreach ($this->collections as $k => $query) {
+                if(isset($queriesTime[$query['sql']])){
+                    $queriesMerged[$k]['sql'] = $query['sql'];
+                    $queriesMerged[$k]['class'] = $query['class'];
+                    $queriesMerged[$k]['time'] = $queriesTime[$query['sql']];
+                }
             }
         }
 
