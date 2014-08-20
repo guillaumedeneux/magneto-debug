@@ -4,9 +4,12 @@ class Magneto_Debug_Block_Analytics extends Magneto_Debug_Block_Abstract
 {
     public function getList()
     {
-        return array('block' => $this->__('Block'),
-       //     'observer' => $this->__('Observer'),
-            'queries' => $this->__('Queries')
+        return array('block' => array('label' =>$this->__('Block'),
+                                      'unit' => 'ms',
+                                      'coef' => 1000),
+            'queries' => array('label' =>$this->__('Queries'),
+                               'unit' => 'μs',
+                               'coef' => 1000000)
         );
     }
 
@@ -16,28 +19,30 @@ class Magneto_Debug_Block_Analytics extends Magneto_Debug_Block_Abstract
 
         foreach ($this->getAnalytics() as $module => $analytics) {
             $isMage = preg_match('/^Mage_/', $module);
+            $list = $this->getList();
 
             if (array_key_exists($type, $analytics)) {
                 foreach ($analytics as $typeClass => $classes) {
                     if ($type == $typeClass) {
                         foreach ($classes as $class => $timer) {
 
-                            $valueMs = sprintf('%.3f', $timer) * 1000;
+                           // $valueS = sprintf('%.3f', $timer) * $list[$type]['coef'];
+                            $valueS = round($timer * $list[$type]['coef']);
 
-                            if ($valueMs === 0)
+                            if ($valueS === 0)
                                 continue;
 
                             if ($isMage) {
                                 if (!isset($result['Mage'])) {
-                                    $result['Mage'] = $valueMs;
+                                    $result['Mage'] = $valueS;
                                 } else {
-                                    $result['Mage'] += $valueMs;
+                                    $result['Mage'] += $valueS;
                                 }
                             } else {
                                 if (!isset($result[$module])) {
-                                    $result[$module] = $valueMs;
+                                    $result[$module] = $valueS;
                                 } else {
-                                    $result[$module] += $valueMs;
+                                    $result[$module] += $valueS;
                                 }
                             }
                         }
