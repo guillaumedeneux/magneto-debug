@@ -1,29 +1,30 @@
 /**
  * Created by guillaumedeneux on 09/06/2014.
  */
-var minWidthBar = 600;
+var minWidthBar = 500;
 var bodyElem = $$('body')[0];
 var sizeBody = bodyElem.getWidth();
 
+
 document.observe("dom:loaded", function() {
-    resizeWindow();
+    $$('#djDebugPanelList li a').invoke('observe', 'click', displayPanel);
 });
 
-Event.observe(window, "resize", function() { resizeWindow()});
 
-function resizeWindow(){
-    var sizeWindow = window.innerWidth;
-    var diffsize = Math.max(sizeWindow - sizeBody, minWidthBar);
+function displayPanel(event){
+    var current = $(Event.element(event));
+    var currentPanel = $(current.readAttribute('class'));
 
+    if(currentPanel.visible()){
+        currentPanel.hide();
+        current.getOffsetParent().removeClassName('active');
+    }else{
+        $$('.panelContent').each(function(element) {element.hide()});
+        $$('#djDebugToolbar li').each(function(element) {element.removeClassName('active')});
 
-    bodyElem.setStyle({
-        float: 'left',
-        width: sizeWindow - diffsize+'px'
-    });
-    $$('.panelContent').each(
-        function (Element) {
-            Element.setStyle({
-                width: diffsize+'px'
-            });
-        });
+        currentPanel.show();
+        current.getOffsetParent().addClassName('active');
+    }
+
+    return false;
 }

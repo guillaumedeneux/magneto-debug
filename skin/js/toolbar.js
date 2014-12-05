@@ -21,26 +21,14 @@
 	var djdt = {
 		init: function() {
 			$('#djDebug').show();
-
-			var linkCurrent = $$('#djDebugPanelList li a').first();
-            $(linkCurrent).parent().addClass('active');
-            var current = $('#djDebug #' + linkCurrent.readAttribute('class'));
             $('.panelContent').hide();
-            current.show();
+			var linkCurrent = $$('#djDebugPanelList li a').first();
+            //$(linkCurrent).parent().addClass('active');
+            var current = $('#djDebug #' + linkCurrent.readAttribute('class'));
+            //$('.panelContent').hide();
+            //current.show();
 
-			$('#djDebugPanelList li a').click(function() {
-				if (!this.className) {
-					return false;
-				}
-				current = $('#djDebug #' + this.className);
 
-                $('.panelContent').hide(); // Hide any that are already open
-                current.show();
-                $('#djDebugToolbar li').removeClass('active');
-                $(this).parent().addClass('active');
-
-				return false;
-			});
 			$('#djDebug a.djDebugClose').click(function() {
 				$(document).trigger('close.djDebug');
 				$('#djDebugToolbar li').removeClass('active');
@@ -154,4 +142,40 @@
 		djdt.init();
 	});
 });
+/* CUSTOM FONCTION GUILLAUME */
+var minWidthBar = 500;
+var bodyElem = $$('body')[0];
+var sizeBody = bodyElem.getWidth();
 
+function resizeWindow(){
+    console.log(isVisiblePanel());
+    if(isVisiblePanel()){
+        var sizeWindow = window.innerWidth;
+        var diffsize = Math.max(sizeWindow - sizeBody, minWidthBar);
+
+
+        bodyElem.setStyle({
+            float: 'left',
+            width: sizeWindow - diffsize+'px'
+        });
+        $$('.panelContent').each(
+            function (Element) {
+                Element.setStyle({
+                    width: diffsize+'px'
+                });
+            });
+    }else{
+        bodyElem.setStyle({
+            float: 'none',
+            width: 'inherit'
+        });
+    }
+}
+function isVisiblePanel(){
+    $$('.panelContent').each(function(element) {
+        if(element.visible()){
+            return true;
+        }
+    });
+    return false;
+}
