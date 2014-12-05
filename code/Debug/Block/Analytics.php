@@ -4,12 +4,15 @@ class Magneto_Debug_Block_Analytics extends Magneto_Debug_Block_Abstract
 {
     public function getList()
     {
-        return array('block' => array('label' =>$this->__('Block'),
+        return array('block' => array('label' =>$this->__('Blocks'),
                                       'unit' => 'ms',
                                       'coef' => 1000),
-            'queries' => array('label' =>$this->__('Queries'),
-                               'unit' => 'μs',
-                               'coef' => 1000000)
+                    'model' => array('label' =>$this->__('Models'),
+                                    'unit' => 'ms',
+                                    'coef' => 1000),
+                    'queries' => array('label' =>$this->__('Queries'),
+                                       'unit' => 'μs',
+                                       'coef' => 1000000)
         );
     }
 
@@ -50,6 +53,8 @@ class Magneto_Debug_Block_Analytics extends Magneto_Debug_Block_Abstract
                 }
             }
         }
+        //sort
+        arsort($result);
 
         return $result;
 
@@ -112,14 +117,14 @@ class Magneto_Debug_Block_Analytics extends Magneto_Debug_Block_Abstract
             $result['module'] = '';
             $result['type'] = 'observer';
             $result['subClass'] = '';
-
+      */
          } elseif (preg_match('/^CORE::create_object_of::/is', $name)) {
             $part = explode('::', $name);
             $class = $part[2];
             list($namespace, $module, $type, $subClass) = explode('_', $class);
             $result['module'] = $namespace . '_' . $module;
             $result['type'] = 'model';
-            $result['subClass'] = (is_array($subClass)) ? implode('_', $subClass) : $subClass; */
+            $result['subClass'] = (is_array($subClass)) ? implode('_', $subClass) : $subClass;
         }
 
         return $result;

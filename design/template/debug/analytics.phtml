@@ -8,7 +8,7 @@
         segmentStrokeColor : "#fff",
 
         //Number - The width of each segment stroke
-        segmentStrokeWidth : 2,
+        segmentStrokeWidth : 1,
 
         //Number - The percentage of the chart that we cut out of the middle
         percentageInnerCutout : 50, // This is 0 for Pie charts
@@ -25,9 +25,9 @@
         //Boolean - Whether we animate scaling the Doughnut from the centre
         animateScale : false,
 
-        tooltipTemplate: "<%= value %>",
+        tooltipTemplate: "<%= value %>", // override in loop
 
-        //String - A legend template
+        //String - A legend template OVERRIDE IN LOOP
         legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\" class=\"picto-<%=name.toLowerCase()%>-legend\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
     };
 
@@ -56,16 +56,20 @@
     //]]>
 </script>
 <?php foreach ($this->getList() as $type => $info) : ?>
+    <?php $sumCurrentType = array_sum($this->getResume($type)); ?>
     <div id="container-myChart-<?php echo $type; ?>" class="debug-container-analytics">
         <h4><?php echo $info['label']; ?></h4>
-        <div class="container-myChart-total"><?php echo array_sum($this->getResume($type)); ?><?php echo $info['unit']; ?></div>
+        <div class="container-myChart-total"><?php echo $sumCurrentType; ?><?php echo $info['unit']; ?></div>
         <canvas id="myChart-<?php echo $type; ?>" width="170" height="170"></canvas>
     </div>
     <script>
         //<![CDATA[
         var ctx_<?php echo $type; ?> = document.getElementById("myChart-<?php echo $type; ?>").getContext("2d");
+        var sumCurrentType = <?php echo $sumCurrentType ?>;
 
-        options.tooltipTemplate = "<%= value %><?php echo $info['unit']; ?>";
+        options.tooltipTemplate = "<%= value %> <?php echo $info['unit']; ?>";
+        options.legendTemplate = "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\" class=\"picto-<%=name.toLowerCase()%>-legend\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%> - <%= Math.round(segments[i].value*1000/sumCurrentType)/10 %>%</li><%}%> </ul>";
+
         var myChart_<?php echo $type; ?> = new Chart(ctx_<?php echo $type; ?>).Doughnut(generateObjectDatas(<?php echo json_encode($this->getResume($type)); ?>),options);
 
         var legend_<?php echo $type; ?> = myChart_<?php echo $type; ?>.generateLegend();
