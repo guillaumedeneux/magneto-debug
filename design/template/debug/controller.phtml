@@ -5,7 +5,7 @@ $cookies = $_COOKIE;
 $session = Mage::getSingleton('core/session');
 ?>
 <h4><?php $this->__('Controller information') ?></h4>
-<table>
+<table class="debug-container">
 	<thead>
 		<tr>
 			<th><?php echo $this->__('Variable') ?></th>
@@ -34,7 +34,7 @@ $session = Mage::getSingleton('core/session');
 
 <h4><?php echo $this->__('COOKIES Variables') ?></h4>
 <?php if( $cookies ): ?>
-	<table>
+	<table class="debug-container">
 		<colgroup>
 			<col style="width:20%"/>
 			<col/>
@@ -62,7 +62,7 @@ $session = Mage::getSingleton('core/session');
 
 <h4><?php echo $this->__('SESSION Variables') ?></h4>
 <?php if( count($_SESSION)): ?>
-	<table>
+	<table class="debug-container">
 		<colgroup>
 			<col style="width:20%"/>
 			<col/>
@@ -75,7 +75,7 @@ $session = Mage::getSingleton('core/session');
 		</thead>
 		<?php foreach( $_SESSION as $namespace => $data): ?>
 		<tbody>
-			<tr><th colspan="2" style="text-align: center; font-size: 120%; font-weight: bold;"><?php echo $namespace ?></th></tr>
+			<tr><th colspan="2" class="debug-container-title-module"><?php echo $namespace ?></th></tr>
 			<?php $row = 0; ?>
 			<?php foreach( $data as $key => $value ): ?>
 				<tr class="<?php echo ( ($row % 2 ? 'djDebugOdd' : 'djDebugEven')) ?>">
@@ -103,7 +103,7 @@ $session = Mage::getSingleton('core/session');
 
 <h4><?php echo $this->__("GET Variables") ?></h4>
 <?php if( $_GET ):?>
-	<table>
+	<table class="debug-container">
 		<thead>
 			<tr>
 				<th><?php echo $this->__("Variable") ?></th>
@@ -126,7 +126,7 @@ $session = Mage::getSingleton('core/session');
 
 <h4><?php echo $this->__("POST Variables") ?></h4>
 <?php if( $_POST ):?>
-	<table>
+	<table class="debug-container">
 		<thead>
 			<tr>
 				<th><?php echo $this->__("Variable") ?></th>

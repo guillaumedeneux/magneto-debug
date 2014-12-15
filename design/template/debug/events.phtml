@@ -1,17 +1,40 @@
 <?php $events = $this->getEvents(); ?>
+<?php $metrics = Mage::getSingleton('debug/metrics'); ?>
+
+<?php foreach($events as $event ): ?>
+    <?php if(isset($event['observers'])): ?>
+        <?php foreach ( $event['observers'] as $observer) : ?>
+            <?php $metrics->addTime($observer['time']); ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
+<?php endforeach; ?>
+
+
 <h4><?php echo $this->__("Events/Observers") ?></h4>
-<table>
+<table class="debug-container">
+    <thead>
+        <tr>
+            <th><?php echo $this->__('DISPATCH EVENT'); ?></th>
+            <th><?php echo $this->__('OBSERVER'); ?></th>
+        </tr>
+    </thead>
     <tbody>
         <?php $row = 0; ?>
         <?php foreach($events as $event ): ?>
             <tr class="<?php echo (($row % 2)?'djDebugOdd':'djDebugEven') ?>">
-                <td><b><?php echo $event['event'] ?></b>
+                <td><?php echo $event['event'] ?></td>
+                <td>
                     <?php if(isset($event['observers'])): ?>
-                        <ul>
+                        <table class="debug-observers">
                             <?php foreach ( $event['observers'] as $observer) : ?>
-                                <li>|-> <i><?php echo $observer ?><i></li>
+                                <tr>
+                                    <td class="col-left-observer"><i><?php echo $observer['title'] ?><i></td>
+                                    <td><?php echo round($observer['time'],5); ?></td>
+                                    <?php  $level = $metrics->getLevel($observer['time']); ?>
+                                    <td><div class="pastilles-level pastille-level<?php echo $level['level'] ?>" title="<?php echo $level['title']; ?>" ></div></td>
+                                </tr>
                             <?php endforeach; ?>
-                        </ul>
+                        </table>
                     <?php endif; ?>
                 </td>
             </tr>

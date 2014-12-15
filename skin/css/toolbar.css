@@ -24,7 +24,6 @@
 
 #djDebug #djDebugToolbar {
 	background:#111;
-	height:63px;
 	z-index:100000000;
 	position:fixed;
     left:0;
@@ -44,7 +43,6 @@
 }
 
 #djDebug #djDebugToolbar li {
-	border-bottom:1px solid #222;
 	color:#fff;
 	display:block;
 	font-weight:bold;
@@ -61,14 +59,14 @@
 	font-style:normal;
 	text-decoration:none;
 	display:block;
-	font-size:16px;
-	padding:10px 10px 5px 25px;
+    font-size: 15px;
+    padding: 5px 20px;
 	color:#fff;
 }
 
 #djDebug #djDebugToolbar li a:hover {
-	color:#111;
-	background-color:#ffc;
+	color:white;
+	background-color:#5b5b5b;
 }
 
 #djDebug #djDebugToolbar li.active {
@@ -80,7 +78,7 @@
 }
 
 #djDebug #djDebugToolbar li.active a:hover {
-	color:#b36a60;
+	color: #fff;
 	background-color:transparent;
 }
 
@@ -150,11 +148,11 @@
 	margin:0;
 	top:0;
 	right:0;
-	bottom:63px;
+	bottom:32px;
 	background-color:#eee;
 	color:#666;
 	z-index:100000000;
-    width: 50%;
+    width: 100%;
 }
 
 #djDebug .panelContent > div {
@@ -184,14 +182,12 @@
 	bottom:0;
 	left:0;
 	height:auto;
-	padding:0 0 0 20px;
 }
 
 #djDebug .djDebugPanelContent .scroll {
 	height:100%;
 	overflow:auto;
 	display:block;
-	padding:0 10px 0 0;
 }
 
 #djDebug h3 {
@@ -203,10 +199,9 @@
 #djDebug h4 {
 	font-size:20px;
 	font-weight:bold;
-	margin-top:0.8em;
 }
 
-#djDebug .panelContent table {
+#djDebug .panelContent table.debug-container {
 	border:1px solid #ccc;
 	border-collapse:collapse;
 	width:100%;
@@ -237,80 +232,6 @@
 	background-color:#fff;
 }
 
-/*
-#djDebug .panelContent p a:hover, #djDebug .panelContent dd a:hover {
-	color:#111;
-	background-color:#ffc;
-}
-
-#djDebug .panelContent p {
-	padding:0 5px;
-}
-
-#djDebug .panelContent p, #djDebug .panelContent table, #djDebug .panelContent ol, #djDebug .panelContent ul, #djDebug .panelContent dl {
-	margin:5px 0 15px;
-	background-color:#fff;
-}
-#djDebug .panelContent table {
-	clear:both;
-	border:0;
-	padding:0;
-	margin:0;
-	border-collapse:collapse;
-	border-spacing:0;
-}
-
-#djDebug .panelContent table a {
-	color:#000;
-	padding:2px 4px;
-}
-#djDebug .panelContent table a:hover {
-	background-color:#ffc;
-}
-
-#djDebug .panelContent table th {
-	background-color:#333;
-	font-weight:bold;
-	color:#fff;
-	padding:3px 7px 3px;
-	text-align:left;
-	cursor:pointer;
-}
-#djDebug .panelContent table td {
-	padding:5px 10px;
-	font-size:14px;
-	background:#fff;
-	color:#000;
-	vertical-align:top;
-	border:0;
-}
-#djDebug .panelContent table tr.djDebugOdd td {
-  background:#eee;
-}
-*/
-
-#djDebug .panelContent .djDebugClose {
-	text-indent:-9999999px;
-	display:block;
-	position:absolute;
-	top:4px;
-	right:15px;
-	height:40px;
-	width:40px;
-	background:url(../img/close.png) no-repeat center center;
-}
-
-#djDebug .panelContent .djDebugClose:hover {
-	background-image:url(../img/close_hover.png);
-}
-
-#djDebug .panelContent .djDebugClose.djDebugBack {
-	background-image:url(../img/back.png);
-}
-
-#djDebug .panelContent .djDebugClose.djDebugBack:hover  {
-	background-image:url(../img/back_hover.png);
-}
 
 #djDebug .panelContent dt, #djDebug .panelContent dd {
 	display:block;
@@ -425,7 +346,7 @@
 #djDebug .container-myChart-total{
     position: absolute;
     z-index: -1;
-    top: 134px;
+    top: 118px;
     left: 57px;
     font-size: 24px;
     line-height: 27px;
@@ -435,3 +356,28 @@
     width: 85px;
 }
 #fusioncharts-tooltip-element { zIndex: 99999 !important }
+#djDebug .pastilles-level{
+    width: 15px;
+    height: 15px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+#djDebug .pastille-level1{background-color: #00c305}
+#djDebug .pastille-level2{background-color: #00eb06}
+#djDebug .pastille-level3{background-color: #66ff00}
+#djDebug .pastille-level4{background-color: #d2ff00}
+#djDebug .pastille-level5{background-color: #ffc600}
+#djDebug .pastille-level6{background-color: #ff0000}
+
+#djDebug .debug-observers{width: 100%;}
+#djDebug .panelContent .debug-observers tbody td {padding: 2px 10px;}
+
+#djDebug .col-left-observer{width: 95%;}
+
+#djDebug .panelContent tbody th.debug-container-title-module{
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    border: 3px dashed grey;
+}

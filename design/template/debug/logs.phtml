@@ -3,7 +3,7 @@
 <?php foreach ($logs as $file => $logs): ?>
     <h4><?php echo $file ?></h4>
     <?php $row = 0; ?>
-    <table class="debug-logs">
+    <table class="debug-logs debug-container">
         <tbody>
             <?php foreach ($logs as $content) : ?>
                 <tr class="<?php echo(($row % 2) ? 'djDebugOdd' : 'djDebugEven') ?>">

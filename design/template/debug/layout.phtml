@@ -9,7 +9,7 @@ $designPackage = Mage::getSingleton('core/design_package');
 ?>
 
 <h4><?php echo $this->__('Package information') ?></h4>
-<table>
+<table class="debug-container">
     <thead>
     <tr>
         <th><?php echo $this->__('Variable') ?></th>
@@ -33,7 +33,7 @@ $designPackage = Mage::getSingleton('core/design_package');
 </table>
 
 <h4><?php echo $this->__('Handles for this request'); echo "(" . count($layoutHandles) . ")" ?></h4>
-<table>
+<table class="debug-container">
 	<thead>
 		<tr>
 			<th><?php echo $this->__('Handle') ?></th>
@@ -43,7 +43,7 @@ $designPackage = Mage::getSingleton('core/design_package');
 		<?php $row = 0; ?>
 		<?php foreach( $layoutHandles as $item ): ?>
 			<tr class="<?php echo ( ($row % 2 ? 'djDebugOdd' : 'djDebugEven')) ?>">
-                <td><a class="remoteCall toggleTemplate" href="<?php echo $this->getViewHandleUrl($item) ?>"><?php echo $item ?></a></td>
+                <td><?php echo $item ?></td>
 			</tr>
 			<?php $row++; ?>
 		<?php endforeach ?>
@@ -61,7 +61,7 @@ $designPackage = Mage::getSingleton('core/design_package');
 </dl>
 
 <h4><?php echo $this->__('Layout updates') ?> (<?php echo count($layoutUpdates); ?>)</h4>
-<table>
+<table class="debug-container">
 	<thead>
 		<tr>
 			<th><?php echo $this->__('#'); ?></th>
