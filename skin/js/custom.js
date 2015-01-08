@@ -12,6 +12,7 @@ document.observe("dom:loaded", function() {
 
 
 function displayPanel(event){
+    event.preventDefault();
     var current = $(Event.element(event));
     var currentPanel = $(current.readAttribute('class'));
 
