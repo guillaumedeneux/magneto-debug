@@ -152,7 +152,8 @@
 	background-color:#eee;
 	color:#666;
 	z-index:100000000;
-    width: 100%;
+    width: 60%;
+    -moz-box-sizing: border-box;
 }
 
 #djDebug .panelContent > div {
@@ -182,6 +183,7 @@
 	bottom:0;
 	left:0;
 	height:auto;
+    padding: 5px 10px;
 }
 
 #djDebug .djDebugPanelContent .scroll {
@@ -206,7 +208,6 @@
 	border-collapse:collapse;
 	width:100%;
 	background-color:#fff;
-	display:block;
 	margin-top:0.8em;
 	overflow: auto;
 }
@@ -217,7 +218,6 @@
 }
 #djDebug .panelContent thead th {
 	padding:1px 6px 1px 3px;
-	text-align:left;
 	font-weight:bold;
 	font-size:14px;
 }
@@ -327,7 +327,7 @@
     overflow-y : auto;
 }
 #djDebug .debug-container-analytics{
-    width: 195px;
+    width: 251px;
     padding: 15px;
     float: left;
     position: relative;
@@ -340,14 +340,15 @@
     margin: 5px;
 }
 #djDebug .doughnut-legend li{
-    font-weight: bold;
+    font-size: 1.3em;
+    padding: 3px 0;
     clear: both;
 }
 #djDebug .container-myChart-total{
     position: absolute;
     z-index: -1;
-    top: 118px;
-    left: 57px;
+    top: 157px;
+    left: 98px;
     font-size: 24px;
     line-height: 27px;
     font-weight: bold;
@@ -357,23 +358,26 @@
 }
 #fusioncharts-tooltip-element { zIndex: 99999 !important }
 #djDebug .pastilles-level{
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
+    display: inline-block;
+    margin: 0 5px;
 }
-#djDebug .pastille-level1{background-color: #00c305}
-#djDebug .pastille-level2{background-color: #00eb06}
-#djDebug .pastille-level3{background-color: #66ff00}
-#djDebug .pastille-level4{background-color: #d2ff00}
+#djDebug .pastille-level1{background-color: #00c809}
+#djDebug .pastille-level2{background-color: #00df0a}
+#djDebug .pastille-level3{background-color: #5de900}
+#djDebug .pastille-level4{background-color: #d3e678}
 #djDebug .pastille-level5{background-color: #ffc600}
-#djDebug .pastille-level6{background-color: #ff0000}
+#djDebug .pastille-level6{background-color: #e70000}
 
 #djDebug .debug-observers{width: 100%;}
 #djDebug .panelContent .debug-observers tbody td {padding: 2px 10px;}
 
-#djDebug .col-left-observer{width: 95%;}
+#djDebug .col-left-observer{width: 75%;}
+#djDebug .observer-col-time{width: 10%;}
 
 #djDebug .panelContent tbody th.debug-container-title-module{
     text-align: center;
@@ -381,3 +385,11 @@
     font-weight: bold;
     border: 3px dashed grey;
 }
+#djDebug .panelContent .debug-controller {width: 100%;}
+#djDebug .panelContent .debug-controller thead th{font-size: 2em;width: 30%;text-align: center}
+#djDebug .panelContent .debug-controller tbody td{text-align: center}
+
+#djDebug .panelContent .debug-layout {width: 100%;}
+#djDebug .panelContent .debug-layout thead th{font-size: 2em;width: 30%;text-align: center}
+#djDebug .panelContent .debug-layout tbody td{text-align: center}
+

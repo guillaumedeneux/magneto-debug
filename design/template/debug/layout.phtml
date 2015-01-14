@@ -9,25 +9,19 @@ $designPackage = Mage::getSingleton('core/design_package');
 ?>
 
 <h4><?php echo $this->__('Package information') ?></h4>
-<table class="debug-container">
+<table class="debug-container debug-layout">
     <thead>
     <tr>
-        <th><?php echo $this->__('Variable') ?></th>
-        <th><?php echo $this->__('Value') ?></th>
+        <th><?php echo $designPackage->getArea() ?></th>
+        <th><?php echo $designPackage->getPackageName() ?></th>
+        <th><?php echo $designPackage->getTheme('template') ?></th>
     </tr>
     </thead>
     <tbody>
         <tr class="djDebugOdd">
             <td><?php echo $this->__('Design Area') ?></td>
-            <td><?php echo $designPackage->getArea() ?></td>
-        </tr>
-        <tr class="djDebugEven">
             <td><?php echo $this->__('Package Name') ?></td>
-            <td><?php echo $designPackage->getPackageName() ?></td>
-        </tr>
-        <tr class="djDebugOdd">
             <td><?php echo $this->__('Template Theme') ?></td>
-            <td><?php echo $designPackage->getTheme('template') ?></td>
         </tr>
     </tbody>
 </table>

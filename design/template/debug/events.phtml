@@ -1,6 +1,6 @@
 <?php $events = $this->getEvents(); ?>
-<?php $metrics = Mage::getSingleton('debug/metrics'); ?>
 
+<?php $metrics = Mage::getModel('debug/metrics'); ?>
 <?php foreach($events as $event ): ?>
     <?php if(isset($event['observers'])): ?>
         <?php foreach ( $event['observers'] as $observer) : ?>
@@ -29,7 +29,7 @@
                             <?php foreach ( $event['observers'] as $observer) : ?>
                                 <tr>
                                     <td class="col-left-observer"><i><?php echo $observer['title'] ?><i></td>
-                                    <td><?php echo round($observer['time'],5); ?></td>
+                                    <td class="observer-col-time"><?php echo round($observer['time'],5); ?></td>
                                     <?php  $level = $metrics->getLevel($observer['time']); ?>
                                     <td><div class="pastilles-level pastille-level<?php echo $level['level'] ?>" title="<?php echo $level['title']; ?>" ></div></td>
                                 </tr>

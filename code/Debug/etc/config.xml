@@ -150,6 +150,7 @@
                 <enable>1</enable>
                 <debug_panel_events_visibility>1</debug_panel_events_visibility>
                 <debug_panel_analytics_visibility>1</debug_panel_analytics_visibility>
+                <debug_panel_modules_visibility>1</debug_panel_modules_visibility>
                 <debug_panel_versions_visibility>1</debug_panel_versions_visibility>
                 <debug_panel_performance_visibility>0</debug_panel_performance_visibility>
                 <debug_panel_configuration_visibility>1</debug_panel_configuration_visibility>

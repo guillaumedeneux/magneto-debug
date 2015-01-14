@@ -6,6 +6,15 @@ $blocks = $this->getItems();
 $layoutBlocks = $this->getLayoutBlocks();
 ?>
 
+<?php $metrics = Mage::getModel('debug/metrics'); ?>
+<?php foreach($blocks as $block ): ?>
+    <?php if(array_key_exists('rendered_in', $block)): ?>
+        <?php $metrics->addTime($block['rendered_in']); ?>
+    <?php endif; ?>
+<?php endforeach; ?>
+
+
+
 <h4><?php echo $this->__('Template path') ?></h4>
 <?php if( $templateDirs ): ?>
 	<ol>
@@ -27,13 +36,13 @@ $layoutBlocks = $this->getLayoutBlocks();
 			<th><?php echo $this->__('name in layout') ?></th>
 			<th><?php echo $this->__('block class') ?></th>
 			<th><?php echo $this->__('template') ?></th>
-            <th><?php echo $this->__('rendering in') ?></th>
+            <th colspan="2"><?php echo $this->__('rendering in') ?></th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php $row = 0; ?>
 		<?php foreach( $blocks as $block ): ?>
-			<tr class="<?php echo ( ($row % 2 ? 'djdebugodd' : 'djdebugeven')) ?>">
+			<tr class="<?php echo ( ($row % 2 ? 'djDebugOdd' : 'djDebugEven')) ?>">
                 <td><?php echo $row ?></td>
                 <td><?php echo $block['layout_name'] ?></td>
                 <td>
@@ -48,6 +57,12 @@ $layoutBlocks = $this->getLayoutBlocks();
                 </td>
                 <td>
                     <?php echo $this->getRenderingTime($block) ?>
+                </td>
+                <td>
+                    <?php if($this->getRenderingTime($block)): ?>
+                        <?php  $level = $metrics->getLevel($block['rendered_in']); ?>
+                        <div class="pastilles-level pastille-level<?php echo $level['level'] ?>" title="<?php echo $level['title']; ?>" ></div>
+                    <?php endif; ?>
                 </td>
 			</tr>
 			<?php $row++; ?>
@@ -69,7 +84,7 @@ $layoutBlocks = $this->getLayoutBlocks();
 	<tbody>
 		<?php $row = 0; ?>
 		<?php foreach( $layoutBlocks as $block ): ?>
-			<tr class="<?php echo ( ($row % 2 ? 'djdebugodd' : 'djdebugeven')) ?>">
+			<tr class="<?php echo ( ($row % 2 ? 'djDebugOdd' : 'djDebugEven')) ?>">
                 <td><?php echo $row ?></td>
                 <td><?php echo $block['layout_name'] ?></td>
                 <td>

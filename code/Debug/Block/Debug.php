@@ -201,6 +201,22 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
         return $panel;
     }
 
+    protected function createModulesPanel() {
+        $title = 'Modules';
+
+        $panel = array(
+            'title' => $title,
+            'has_content' => true,
+            'url' => NULL,
+            'dom_id' => 'debug-panel-' . $title,
+            'nav_title' => $title,
+            'nav_subtitle' => "View by modules",
+            'template' => 'debug_modules_panel',           // child block defined in layout xml
+            'order' => Mage::getStoreConfig('debug/order_options/debug_panel_modules')
+        );
+        return $panel;
+    }
+
     protected function createLogsPanel()
     {
         $title = 'Logs';
@@ -247,6 +263,8 @@ class Magneto_Debug_Block_Debug extends Magneto_Debug_Block_Abstract
         $panels[] = $this->createPerformancePanel();
         $panels[] = $this->createConfigPanel();
         $panels[] = $this->createUtilsPanel();
+        $panels[] = $this->createModulesPanel();
+
         // TODO: Implement preferences panel (toggle panels visibility from toolbar)
 //        $panels[] = $this->createPreferencesPanel();
 

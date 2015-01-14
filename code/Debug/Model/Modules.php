@@ -27,6 +27,7 @@ class Magneto_Debug_Model_Metrics extends Mage_Core_Model_Abstract
 
     //Utilisation des écarts types
     public function getLevel($value){
+
         $result = array();
 
         if($this->_deviation===false || $this->_average===false){

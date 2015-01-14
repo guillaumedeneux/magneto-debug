@@ -4,31 +4,24 @@ $request = $controller->getRequest();
 $cookies = $_COOKIE;
 $session = Mage::getSingleton('core/session');
 ?>
-<h4><?php $this->__('Controller information') ?></h4>
-<table class="debug-container">
+<h4><?php echo $this->__('Controller informations') ?></h4>
+<span class="debug_request_path"><b><?php echo $this->__('Request Path') ?> :</b> <?php echo $request->getPathInfo() ?></span><br/>
+<span class="debug_controller_module"><b><?php echo $this->__('Controller Module') ?> :</b> <?php echo $request->getControllerModule() ?></span>
+
+<table class="debug-container debug-controller">
 	<thead>
 		<tr>
-			<th><?php echo $this->__('Variable') ?></th>
-			<th><?php echo $this->__('Value') ?></th>
+			<th><?php echo $request->getRouteName() ?></th>
+			<th><?php echo $request->getControllerName() ?></th>
+			<th><?php echo $request->getActionName() ?></th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr class="djDebugOdd">
 			<td><?php echo $this->__('Route Name') ?></td>
-			<td><?php echo $request->getRouteName() ?></td>
-		</tr>
-		<tr class="djDebugEven">
-			<td><?php echo $this->__('Controller Module/Name') ?></td>
-			<td><?php echo $request->getControllerModule() ?> / <?php echo $request->getControllerName() ?></td>
-		</tr>
-		<tr class="djDebugOdd">
-			<td><?php echo $this->__('Action Name') ?></td>
-			<td><?php echo $request->getActionName() ?></td>
-		</tr>
-		<tr class="djDebugEven">
-			<td><?php echo $this->__('Request Path') ?></td>
-			<td><?php echo $request->getPathInfo() ?></td>
-		</tr>
+            <td><?php echo $this->__('Controller Name') ?></td>
+            <td><?php echo $this->__('Action Name') ?></td>
+        </tr>
 	</tbody>
 </table>
 

@@ -36,6 +36,8 @@ class Magneto_Debug_Block_Blocks extends Magneto_Debug_Block_Abstract
     {
         if (array_key_exists('rendered_in', $block)){
             return number_format($block['rendered_in'], 3);
+        }else{
+            return false;
         }
     }
 
