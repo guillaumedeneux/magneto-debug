@@ -148,24 +148,39 @@
         <debug>
             <options>
                 <enable>1</enable>
-                <debug_panel_events_visibility>1</debug_panel_events_visibility>
-                <debug_panel_analytics_visibility>1</debug_panel_analytics_visibility>
-                <debug_panel_modules_visibility>1</debug_panel_modules_visibility>
-                <debug_panel_versions_visibility>1</debug_panel_versions_visibility>
-                <debug_panel_performance_visibility>0</debug_panel_performance_visibility>
-                <debug_panel_configuration_visibility>1</debug_panel_configuration_visibility>
                 <debug_panel_blocks_visibility>1</debug_panel_blocks_visibility>
                 <debug_panel_layout_visibility>1</debug_panel_layout_visibility>
                 <debug_panel_controller_visibility>1</debug_panel_controller_visibility>
                 <debug_panel_models_visibility>1</debug_panel_models_visibility>
-                <debug_panel_utilities_visibility>0</debug_panel_utilities_visibility>
-                <debug_panel_preferences_visibility>0</debug_panel_preferences_visibility>
+                <debug_panel_events_visibility>1</debug_panel_events_visibility>
+                <debug_panel_versions_visibility>1</debug_panel_versions_visibility>
+                <debug_panel_analytics_visibility>1</debug_panel_analytics_visibility>
                 <debug_panel_logs_visibility>0</debug_panel_logs_visibility>
+                <debug_panel_modules_visibility>0</debug_panel_modules_visibility>
+                <debug_panel_configuration_visibility>0</debug_panel_configuration_visibility>
+                <debug_panel_performance_visibility>0</debug_panel_performance_visibility>
+                <!--<debug_panel_utilities_visibility>0</debug_panel_utilities_visibility>
+                <debug_panel_preferences_visibility>0</debug_panel_preferences_visibility>-->
             </options>
+            <order_options>
+                <debug_panel_blocks>1</debug_panel_blocks>
+                <debug_panel_layout>2</debug_panel_layout>
+                <debug_panel_controller>3</debug_panel_controller>
+                <debug_panel_models>4</debug_panel_models>
+                <debug_panel_events>5</debug_panel_events>
+                <debug_panel_versions>6</debug_panel_versions>
+                <debug_panel_analytics>7</debug_panel_analytics>
+                <debug_panel_logs>8</debug_panel_logs>
+                <debug_panel_modules>9</debug_panel_modules>
+                <debug_panel_configuration>10</debug_panel_configuration>
+                <debug_panel_performance>11</debug_panel_performance>
+            </order_options>
+            <!--
             <sort_order>
                 <debug_panel_utilities>11</debug_panel_utilities>
                 <debug_panel_preferences>12</debug_panel_preferences>
             </sort_order>
+            -->
         </debug>
     </default>
 

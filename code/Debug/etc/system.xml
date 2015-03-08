@@ -3,116 +3,31 @@
         <debug translate="label" module="debug">
             <label>Debug Toolbar</label>
             <tab>advanced</tab>
-            <sort_order>100</sort_order>
             <show_in_default>1</show_in_default>
             <show_in_website>1</show_in_website>
             <show_in_store>1</show_in_store>
+            <sort_order>100</sort_order>
 
             <groups>
                 <options translate="label">
                     <label>Debug Toolbar Options</label>
-                    <sort_order>0</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <expanded>1</expanded>
+                    <sort_order>0</sort_order>
                     <fields>
                         <enable>
                             <label>Enable Debug Toolbar</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <comment><![CDATA[Display Debug Toolbar if set to Yes and client's ip is whitelisted in 
+                            <comment><![CDATA[Display Debug Toolbar if set to Yes and client's ip is whitelisted in
                                 System / Configuration / Developer / Developer Client Restrictions - Allowed IPS.]]></comment>
-                            <sort_order>0</sort_order>
+                            <sort_order>1</sort_order>
                         </enable>
-
-                        <debug_panel_events_visibility>
-                            <label>Show Events Panel</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <depends>
-                                <enable>1</enable>
-                            </depends>
-                            <sort_order>0</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <sort_order>1</sort_order>
-                        </debug_panel_events_visibility>
-
-                        <debug_panel_versions_visibility>
-                            <label>Show Versions Panel</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <depends>
-                                <enable>1</enable>
-                            </depends>
-                            <sort_order>1</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <sort_order>1</sort_order>
-                        </debug_panel_versions_visibility>
-
-                        <debug_panel_performance_visibility>
-                            <label>Show Performance Panel</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <depends>
-                                <enable>1</enable>
-                            </depends>
-                            <sort_order>1</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <sort_order>2</sort_order>
-                        </debug_panel_performance_visibility>
-
-                        <debug_panel_configuration_visibility>
-                            <label>Show Configuration Panel</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <depends>
-                                <enable>1</enable>
-                            </depends>
-                            <sort_order>1</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <sort_order>3</sort_order>
-                        </debug_panel_configuration_visibility>
-
-                        <debug_panel_controller_visibility>
-                            <label>Show Controller Panel</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <depends>
-                                <enable>1</enable>
-                            </depends>
-                            <sort_order>1</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <sort_order>4</sort_order>
-                        </debug_panel_controller_visibility>
-
-                        <debug_panel_models_visibility>
-                            <label>Show Models Panel</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <depends>
-                                <enable>1</enable>
-                            </depends>
-                            <sort_order>1</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <sort_order>5</sort_order>
-                        </debug_panel_models_visibility>
 
                         <debug_panel_layout_visibility>
                             <label>Show Layout Panel</label>
@@ -121,11 +36,10 @@
                             <depends>
                                 <enable>1</enable>
                             </depends>
-                            <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <sort_order>6</sort_order>
+                            <sort_order>2</sort_order>
                         </debug_panel_layout_visibility>
 
                         <debug_panel_blocks_visibility>
@@ -135,26 +49,63 @@
                             <depends>
                                 <enable>1</enable>
                             </depends>
-                            <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <sort_order>7</sort_order>
+                            <sort_order>2</sort_order>
                         </debug_panel_blocks_visibility>
 
-                        <debug_panel_logs_visibility>
-                            <label>Show Logs Panel</label>
+                        <debug_panel_controller_visibility>
+                            <label>Show Controller Panel</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <depends>
                                 <enable>1</enable>
                             </depends>
-                            <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <sort_order>8</sort_order>
-                        </debug_panel_logs_visibility>
+                            <sort_order>3</sort_order>
+                        </debug_panel_controller_visibility>
+
+                        <debug_panel_events_visibility>
+                            <label>Show Events Panel</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>4</sort_order>
+                        </debug_panel_events_visibility>
+
+                        <debug_panel_models_visibility>
+                            <label>Show Models Panel</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>5</sort_order>
+                        </debug_panel_models_visibility>
+
+                        <debug_panel_versions_visibility>
+                            <label>Show Versions Panel</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>6</sort_order>
+                        </debug_panel_versions_visibility>
 
                         <debug_panel_analytics_visibility>
                             <label>Show Analytics Panel</label>
@@ -163,144 +114,171 @@
                             <depends>
                                 <enable>1</enable>
                             </depends>
-                            <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <sort_order>9</sort_order>
+                            <sort_order>7</sort_order>
                         </debug_panel_analytics_visibility>
 
-                        <debug_panel_modules_visibility>
-                            <label>Show Modules Panel</label>
+                        <debug_panel_logs_visibility>
+                            <label>Show Logs Panel</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <depends>
                                 <enable>1</enable>
                             </depends>
-                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>8</sort_order>
+                        </debug_panel_logs_visibility>
+
+                        <debug_panel_modules_visibility>
+                            <label>Show Modules Panel (currently broken)</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>9</sort_order>
+                        </debug_panel_modules_visibility>
+
+                        <debug_panel_performance_visibility>
+                            <label>Show Performance Panel (currently broken)</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <sort_order>10</sort_order>
-                        </debug_panel_modules_visibility>
+                        </debug_panel_performance_visibility>
+
+                        <debug_panel_configuration_visibility>
+                            <label>Show Configuration Panel (currently broken)</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>11</sort_order>
+                        </debug_panel_configuration_visibility>
 
                     </fields>
                 </options>
                 <order_options translate="label">
                     <label>Order options</label>
-                    <sort_order>100</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
+                    <sort_order>100</sort_order>
                     <fields>
-                        <debug_panel_events>
-                            <label>Order Events Panel</label>
+
+                        <debug_panel_blocks>
+                            <label>Order Blocks Panel</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>0</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <sort_order>1</sort_order>
-                        </debug_panel_events>
+                        </debug_panel_blocks>
 
-                        <debug_panel_versions>
-                            <label>Order Versions Panel</label>
+                        <debug_panel_layout>
+                            <label>Order Layout Panel</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>1</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <sort_order>1</sort_order>
-                        </debug_panel_versions>
-
-                        <debug_panel_performance>
-                            <label>Order Performance Panel</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <sort_order>2</sort_order>
-                        </debug_panel_performance>
-
-                        <debug_panel_configuration>
-                            <label>Order Configuration Panel</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>1</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <sort_order>3</sort_order>
-                        </debug_panel_configuration>
+                        </debug_panel_layout>
 
                         <debug_panel_controller>
                             <label>Order Controller Panel</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <sort_order>4</sort_order>
+                            <sort_order>3</sort_order>
                         </debug_panel_controller>
 
                         <debug_panel_models>
                             <label>Order Models Panel</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>4</sort_order>
+                        </debug_panel_models>
+
+                        <debug_panel_events>
+                            <label>Order Events Panel</label>
+                            <frontend_type>text</frontend_type>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <sort_order>5</sort_order>
-                        </debug_panel_models>
+                        </debug_panel_events>
 
-                        <debug_panel_layout>
-                            <label>Order Layout Panel</label>
+                        <debug_panel_versions>
+                            <label>Order Versions Panel</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <sort_order>6</sort_order>
-                        </debug_panel_layout>
+                        </debug_panel_versions>
 
-                        <debug_panel_blocks>
-                            <label>Order Blocks Panel</label>
+                        <debug_panel_analytics>
+                            <label>Order Analytics Panel</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <sort_order>7</sort_order>
-                        </debug_panel_blocks>
+                        </debug_panel_analytics>
 
                         <debug_panel_logs>
                             <label>Order Logs Panel</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <sort_order>8</sort_order>
                         </debug_panel_logs>
 
-                        <debug_panel_analytics>
-                            <label>Order Analytics Panel</label>
+                        <debug_panel_performance>
+                            <label>Order Performance Panel</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <sort_order>9</sort_order>
-                        </debug_panel_analytics>
+                        </debug_panel_performance>
 
-                        <debug_panel_modules>
-                            <label>Order Modules Panel</label>
+                        <debug_panel_configuration>
+                            <label>Order Configuration Panel</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <sort_order>10</sort_order>
+                        </debug_panel_configuration>
+
+                        <debug_panel_modules>
+                            <label>Order Modules Panel</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>11</sort_order>
                         </debug_panel_modules>
                     </fields>
                 </order_options>
@@ -308,4 +286,3 @@
         </debug>
     </sections>
 </config>
-
